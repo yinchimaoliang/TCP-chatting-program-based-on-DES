@@ -117,62 +117,60 @@ class DES():
 
 
     #将char转化为unicode
-    def char2unicode_ascii(self,intext, length):
-        outtext = []
-        for i in range(length):
-            outtext.append(ord(intext[i]))
-        return outtext
+    def char2unicode_ascii(self,input):
+        output = []
+        for i in range(len(input)):
+            output.append(ord(input[i]))
+        return output
 
     # 将Unicode码转为bit
-    def unicode2bit(self,intext, length):
-        outbit = []
-        for i in range(length * 16):
-            outbit.append((intext[int(i / 16)] >> (i % 16)) & 1)  # 一次左移一bit
-        return outbit
+    def unicode2bit(self,input):
+        output = []
+        for i in range(len(input) * 16):
+            output.append((input[int(i / 16)] >> (i % 16)) & 1)  # 一次左移一bit
+        return output
 
     # 将8位ASCII码转为bit
-    def byte2bit(self,inchar, length):
-        outbit = []
-        for i in range(length * 8):
-            outbit.append((inchar[int(i / 8)] >> (i % 8)) & 1)  # 一次左移一bit
-        return outbit
+    def byte2bit(self,input):
+        output = []
+        for i in range(len(input) * 8):
+            output.append((input[int(i / 8)] >> (i % 8)) & 1)  # 一次左移一bit
+        return output
 
     # 将bit转为Unicode码
-    def bit2unicode(self,inbit, length):
-        out = []
+    def bit2unicode(self,input):
+        output = []
         temp = 0
-        for i in range(length):
-            temp = temp | (inbit[i] << (i % 16))
+        for i in range(len(input)):
+            temp = temp | (input[i] << (i % 16))
             if i % 16 == 15:
-                out.append(temp)
+                output.append(temp)
                 temp = 0
-        return out
+        return output
 
     # 将bit转为ascii 码
-    def bit2byte(self,inbit, length):
-        out = []
+    def bit2byte(self,input):
+        output = []
         temp = 0
-        for i in range(length):
-            temp = temp | (inbit[i] << (i % 8))
+        for i in range(len(input)):
+            temp = temp | (input[i] << (i % 8))
             if i % 8 == 7:
-                out.append(temp)
+                output.append(temp)
                 temp = 0
-        return out
+        return output
 
     # 将unicode码转为字符（中文或英文）
-    def unicode2char(self,inbyte, length):
-        out = ""
-        for i in range(length):
-            out = out + chr(inbyte[i])
-        return out
+    def unicode2char(self,input):
+        output = ""
+        for i in range(len(input)):
+            output = output + chr(input[i])
+        return output
 
     # 生成每一轮的key
     def createKeys(self,inkeys):
         keyResult = []
-        asciikey = self.char2unicode_ascii(inkeys, len(inkeys))
-        keyinit = self.byte2bit(asciikey, len(asciikey))
-        #    print("keyinit=",end='')
-        #    print(keyinit)
+        asciikey = self.char2unicode_ascii(inkeys)
+        keyinit = self.byte2bit(asciikey)
         # 初始化列表key0,key1
         key0 = [0 for i in range(56)]
         key1 = [0 for i in range(48)]
@@ -225,9 +223,9 @@ class DES():
 
             tempText = [0 for i in range(64)]  # 用于临时盛放IP逆置换之前，将L部分和R部分合并成64位的结果
             extendR = [0 for i in range(48)]  # 用于盛放R部分的扩展结果
-            unicodeText = self.char2unicode_ascii(text, len(text))
+            unicodeText = self.char2unicode_ascii(text)
             #        print(unicodeText)
-            bitText = self.unicode2bit(unicodeText, len(unicodeText))
+            bitText = self.unicode2bit(unicodeText)
             #        print(bitText)
 
             initTrans = [0 for i in range(64)]  # 初始化，用于存放IP置换后的结果
@@ -290,18 +288,18 @@ class DES():
             # -----------IP逆置换--------
             for k in range(64):
                 finalTextOfBit[k] = tempText[self._IP_table[k] - 1]
-            finalTextOfUnicode = self.bit2byte(finalTextOfBit, len(finalTextOfBit))
+            finalTextOfUnicode = self.bit2byte(finalTextOfBit)
             #        print(finalTextOfUnicode)
-            finalTextOfChar = self.unicode2char(finalTextOfUnicode, len(finalTextOfUnicode))
+            finalTextOfChar = self.unicode2char(finalTextOfUnicode)
             #        print(finalTextOfChar)
             return finalTextOfChar
         else:  # 选择的操作类型为解密
 
             tempText = [0 for i in range(64)]  # 用于临时盛放IP逆置换之前，将L部分和R部分合并成64位的结果
             extendR = [0 for i in range(48)]  # 用于盛放R部分的扩展结果
-            unicodeText = self.char2unicode_ascii(text, len(text))
+            unicodeText = self.char2unicode_ascii(text)
             #        print(unicodeText)
-            bitText = self.byte2bit(unicodeText, len(unicodeText))
+            bitText = self.byte2bit(unicodeText)
             #        print(bitText)
 
             initTrans = [0 for i in range(64)]  # 初始化，用于存放IP置换后的结果
@@ -364,9 +362,9 @@ class DES():
             # -----------IP逆置换--------
             for k in range(64):
                 finalTextOfBit[k] = tempText[self._IP_table[k] - 1]
-            finalTextOfUnicode = self.bit2unicode(finalTextOfBit, len(finalTextOfBit))
+            finalTextOfUnicode = self.bit2unicode(finalTextOfBit)
             #        print(finalTextOfUnicode)
-            finalTextOfChar = self.unicode2char(finalTextOfUnicode, len(finalTextOfUnicode))
+            finalTextOfChar = self.unicode2char(finalTextOfUnicode)
             #        print(finalTextOfChar)
             return finalTextOfChar
 
