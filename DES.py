@@ -166,10 +166,13 @@ class DES():
             output = output + chr(input[i])
         return output
 
-    # 生成每一轮的key
-    def createKeys(self,inkeys):
+
+
+    def DES(self,text, key, mode):
+
+        #生成所有key
         keyResult = []
-        asciikey = self.char2unicode_ascii(inkeys)
+        asciikey = self.char2unicode_ascii(key)
         keyinit = self.byte2bit(asciikey)
         # 初始化列表key0,key1
         key0 = [0 for i in range(56)]
@@ -180,14 +183,13 @@ class DES():
 
         # 进行16轮的密码生成
         for i in range(16):
-            # ---------确定左移的次数----------
+            # 根据表格可知，当i=0或i=8或i=15时移动步数为1，其余情况为2
             if (i == 0 or i == 1 or i == 8 or i == 15):
                 moveStep = 1
             else:
                 moveStep = 2
-            # ------------------------------
 
-            # --------分两部分，每28bit位一部分，进行循环左移------------
+            # 循环左移
             for j in range(moveStep):
                 for k in range(8):
                     temp = key0[k * 7]
@@ -202,32 +204,22 @@ class DES():
                 for k in range(28, 55):
                     key0[k] = key0[k + 1]
                 key0[55] = temp
-            # -----------------------------------------------------
 
-            # ------------对56位密钥进行压缩置换，压缩为48位-------------
+            # 56位key变为48位
             for k in range(48):
                 key1[k] = key0[self.compression_table2[k] - 1]
             keyResult.extend(key1)
 
-            # ------------------------------------------------------
 
-        return keyResult
 
-    def DES(self,text, key, optionType):
-        keyResult = self.createKeys(key)
         finalTextOfBit = [0 for i in range(64)]
-        finalTextOfUnicode = [0 for i in range(4)]
-        #    print(keyResult)
 
-        if optionType == 0:  # 选择的操作类型为加密
+        # 加密操作
+        if mode == 0:
 
-            tempText = [0 for i in range(64)]  # 用于临时盛放IP逆置换之前，将L部分和R部分合并成64位的结果
             extendR = [0 for i in range(48)]  # 用于盛放R部分的扩展结果
             unicodeText = self.char2unicode_ascii(text)
-            #        print(unicodeText)
             bitText = self.unicode2bit(unicodeText)
-            #        print(bitText)
-
             initTrans = [0 for i in range(64)]  # 初始化，用于存放IP置换后的结果
 
             # ------------------进行初始IP置换---------------
@@ -237,7 +229,7 @@ class DES():
             L = [initTrans[i] for i in range(32)]
             R = [initTrans[i] for i in range(32, 64)]
 
-            # 开始进行16轮运算
+            # 16轮迭代
             for i in range(16):
                 tempR = R  # 用于临时盛放R
 
@@ -289,18 +281,13 @@ class DES():
             for k in range(64):
                 finalTextOfBit[k] = tempText[self._IP_table[k] - 1]
             finalTextOfUnicode = self.bit2byte(finalTextOfBit)
-            #        print(finalTextOfUnicode)
             finalTextOfChar = self.unicode2char(finalTextOfUnicode)
-            #        print(finalTextOfChar)
             return finalTextOfChar
-        else:  # 选择的操作类型为解密
+        else:  # 解密操作
 
-            tempText = [0 for i in range(64)]  # 用于临时盛放IP逆置换之前，将L部分和R部分合并成64位的结果
             extendR = [0 for i in range(48)]  # 用于盛放R部分的扩展结果
             unicodeText = self.char2unicode_ascii(text)
-            #        print(unicodeText)
             bitText = self.byte2bit(unicodeText)
-            #        print(bitText)
 
             initTrans = [0 for i in range(64)]  # 初始化，用于存放IP置换后的结果
 
@@ -363,9 +350,7 @@ class DES():
             for k in range(64):
                 finalTextOfBit[k] = tempText[self._IP_table[k] - 1]
             finalTextOfUnicode = self.bit2unicode(finalTextOfBit)
-            #        print(finalTextOfUnicode)
             finalTextOfChar = self.unicode2char(finalTextOfUnicode)
-            #        print(finalTextOfChar)
             return finalTextOfChar
 
 
@@ -383,7 +368,6 @@ if __name__ == '__main__':
 
     Result = ""
     if optionType == '0':
-        #        f=open('D:\encyptText.txt','w')
         # ----------若输入文本的长度不是4的整数倍，即不是64字节的整数倍，用空格补全（此处为了加密中文，用的是unicode编码，即用16字节表示一个字符）-------
         text = text + (length % 4) * " "
         length = len(text)
@@ -402,7 +386,6 @@ if __name__ == '__main__':
 
     if optionType == '1':
         # ----------若输入文本的长度不是8的整数倍，即不是64字节的整数倍，用空格补全（此处解密出来的密文用的是每8bit转换为一个ascii码，所以生成的八位表示的字符）-------
-        #        text=text+(length%8)*" "
         length = len(text)
         key = input("请输入8位解密密码: ")
         while (len(key) != 8):
