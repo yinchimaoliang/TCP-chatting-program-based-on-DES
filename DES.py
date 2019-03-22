@@ -368,7 +368,7 @@ class DES():
         print("加密后的文本：", end=" ")
         for i in range(int(length / 4)):
             tempText = [text[j] for j in range(i * 4, i * 4 + 4)]
-            Result = "".join([Result, t.DES(tempText, key, 0)])
+            Result = "".join([Result, self.DES(tempText, key, 0)])
         return Result
 
 
@@ -377,7 +377,7 @@ class DES():
         Result = ""
         for i in range(int(length / 8)):
             tempText = [text[j] for j in range(i * 8, i * 8 + 8)]
-            Result = "".join([Result, t.DES(tempText, key, int(optionType))])
+            Result = "".join([Result, self.DES(tempText, key,1)])
         return Result
 
 

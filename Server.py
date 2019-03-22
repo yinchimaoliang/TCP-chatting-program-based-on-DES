@@ -23,16 +23,16 @@ class Server():
     def communicate(self):
         info_encrypted = self.sock.recv(1024).decode()
         print(info_encrypted)
-        info = self.des.DES(info_encrypted, KEY, 1)
+        info = self.des.decrypt(info_encrypted,KEY)
         while info != 'exit':
           print('MOOD:'+info)
           send_mes = input()
-          send_mes_encrypted = self.des.DES(send_mes,KEY,0)
+          send_mes_encrypted = self.des.encrypt(send_mes,KEY)
           self.sock.send(send_mes_encrypted.encode())
           if send_mes =='exit':
             break
           info_encrypted = self.sock.recv(1024).decode()
-          info = self.des.DES(info_encrypted, KEY, 1)
+          info = self.des.decrypt(info_encrypted,KEY)
         self.sock.close()
         self.s.close()
 
