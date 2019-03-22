@@ -171,7 +171,7 @@ class DES():
     def DES(self,text, key, mode):
 
         #生成所有key
-        keyResult = []
+        keys = []
         asciikey = self.char2unicode_ascii(key)
         keyinit = self.byte2bit(asciikey)
         # 初始化列表key0,key1
@@ -208,7 +208,7 @@ class DES():
             # 56位key变为48位
             for k in range(48):
                 key1[k] = key0[self.compression_table2[k] - 1]
-            keyResult.extend(key1)
+            keys.extend(key1)
 
 
 
@@ -237,7 +237,7 @@ class DES():
                 for j in range(48):
                     extendR[j] = R[self.extend_table[j] - 1]
                 #           print(len(keyResult))
-                keyi = [keyResult[j] for j in range(i * 48, i * 48 + 48)]
+                keyi = [keys[j] for j in range(i * 48, i * 48 + 48)]
                 # ----------与key值进行异或运算----------------
                 XORResult = [0 for j in range(48)]
                 for j in range(48):
@@ -283,7 +283,12 @@ class DES():
             finalTextOfUnicode = self.bit2byte(finalTextOfBit)
             finalTextOfChar = self.unicode2char(finalTextOfUnicode)
             return finalTextOfChar
-        else:  # 解密操作
+
+
+
+
+        # 解密操作
+        else:
 
             extendR = [0 for i in range(48)]  # 用于盛放R部分的扩展结果
             unicodeText = self.char2unicode_ascii(text)
@@ -306,7 +311,7 @@ class DES():
                 for j in range(48):
                     extendR[j] = R[self.extend_table[j] - 1]
 
-                keyi = [keyResult[j] for j in range(i * 48, i * 48 + 48)]
+                keyi = [keys[j] for j in range(i * 48, i * 48 + 48)]
                 # ----------与key值进行异或运算----------------
                 XORResult = [0 for j in range(48)]
                 for j in range(48):
