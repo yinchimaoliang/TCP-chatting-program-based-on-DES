@@ -359,6 +359,26 @@ class DES():
             return finalTextOfChar
 
 
+    def encrypt(self,text,key):
+        Result = ""
+        length = len(text)
+        text = text + (length % 4) * " "
+        length = len(text)
+
+        print("加密后的文本：", end=" ")
+        for i in range(int(length / 4)):
+            tempText = [text[j] for j in range(i * 4, i * 4 + 4)]
+            Result = "".join([Result, t.DES(tempText, key, 0)])
+        return Result
+
+
+    def decrypt(self,text,key):
+        length = len(text)
+        Result = ""
+        for i in range(int(length / 8)):
+            tempText = [text[j] for j in range(i * 8, i * 8 + 8)]
+            Result = "".join([Result, t.DES(tempText, key, int(optionType))])
+        return Result
 
 
 if __name__ == '__main__':
@@ -373,6 +393,7 @@ if __name__ == '__main__':
 
     Result = ""
     if optionType == '0':
+
         # ----------若输入文本的长度不是4的整数倍，即不是64字节的整数倍，用空格补全（此处为了加密中文，用的是unicode编码，即用16字节表示一个字符）-------
         text = text + (length % 4) * " "
         length = len(text)
@@ -382,12 +403,14 @@ if __name__ == '__main__':
             print("wrong!!请输入8位密码")
             key = input("请输入8位加密密码: ")
 
-        print("加密后的文本：", end=" ")
-        for i in range(int(length / 4)):
-            tempText = [text[j] for j in range(i * 4, i * 4 + 4)]
-            Result = "".join([Result, t.DES(tempText, key, int(optionType))])
-        #            f.write(Result)
-        print(Result)
+        print(t.encrypt(text, key))
+        #
+        # print("加密后的文本：", end=" ")
+        # for i in range(int(length / 4)):
+        #     tempText = [text[j] for j in range(i * 4, i * 4 + 4)]
+        #     Result = "".join([Result, t.DES(tempText, key, int(optionType))])
+        # #            f.write(Result)
+        # print(Result)
 
     if optionType == '1':
         # ----------若输入文本的长度不是8的整数倍，即不是64字节的整数倍，用空格补全（此处解密出来的密文用的是每8bit转换为一个ascii码，所以生成的八位表示的字符）-------
@@ -398,7 +421,8 @@ if __name__ == '__main__':
             key = input("请输入8位解密密码: ")
 
         print("解密后的文本：", end=" ")
-        for i in range(int(length / 8)):
-            tempText = [text[j] for j in range(i * 8, i * 8 + 8)]
-            Result = "".join([Result, t.DES(tempText, key, int(optionType))])
-        print(Result)
+        print(t.decrypt(text,key))
+        # for i in range(int(length / 8)):
+        #     tempText = [text[j] for j in range(i * 8, i * 8 + 8)]
+        #     Result = "".join([Result, t.DES(tempText, key, int(optionType))])
+        # print(Result)

@@ -24,13 +24,15 @@ class Client():
         while info != "exit":
             print('Server:' + info)
             send_mes = input()
+            print(send_mes)
             send_mes_encrypted = self.des.DES(send_mes,KEY,0)
-            self.s.send(send_mes.encode())
+            print(send_mes_encrypted)
+            self.s.send(send_mes_encrypted.encode())
             if send_mes == "exit":
                 break
             info_encrypted = self.s.recv(1024).decode()
-            print(info_encrypted)
-            # info = self.des.DES(info_encrypted,KEY,1)
+            # print(info_encrypted)
+            info = self.des.DES(info_encrypted,KEY,1)
         self.s.close()
 
 
