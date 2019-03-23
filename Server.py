@@ -25,10 +25,11 @@ class Server():
         print(info_encrypted)
         info = self.des.decrypt(info_encrypted,KEY)
         while info != 'exit':
-          print('MOOD:'+info)
-          send_mes = input()
+          print('Client:'+info)
+          send_mes = input("Please input the message you want to send:")
           send_mes_encrypted = self.des.encrypt(send_mes,KEY)
           self.sock.send(send_mes_encrypted.encode())
+          print("Message sent.")
           if send_mes =='exit':
             break
           info_encrypted = self.sock.recv(1024).decode()

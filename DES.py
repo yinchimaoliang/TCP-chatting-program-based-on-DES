@@ -365,7 +365,6 @@ class DES():
         text = text + (length % 4) * " "
         length = len(text)
 
-        print("加密后的文本：", end=" ")
         for i in range(int(length / 4)):
             tempText = [text[j] for j in range(i * 4, i * 4 + 4)]
             Result = "".join([Result, self.DES(tempText, key, 0)])

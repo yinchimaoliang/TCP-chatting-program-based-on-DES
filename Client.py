@@ -22,12 +22,12 @@ class Client():
     def communicate(self):
         info = ""
         while info != "exit":
-            print('Server:' + info)
-            send_mes = input()
-            print(send_mes)
+            if info != "":
+                print('Server:' + info)
+            send_mes = input("Please input the message you want to send:")
             send_mes_encrypted = self.des.encrypt(send_mes,KEY)
-            print(send_mes_encrypted)
             self.s.send(send_mes_encrypted.encode())
+            print("Message sent.")
             if send_mes == "exit":
                 break
             info_encrypted = self.s.recv(1024).decode()
