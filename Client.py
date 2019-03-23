@@ -1,5 +1,6 @@
 import socket
 from DES import DES
+import threading
 
 
 PORT = 12345
@@ -18,22 +19,28 @@ class Client():
         self.des = DES()
 
 
+    def receiveMessage(self):
+        info_encrypted = self.s.recv(1024).decode()
+        # print(info_encrypted)
+        info = self.des.decrypt(info_encrypted, KEY)
+        print('Server:' + info)
+
 
     def communicate(self):
-        info = ""
-        while info != "exit":
-            if info != "":
-                print('Server:' + info)
-            send_mes = input("Please input the message you want to send:")
-            send_mes_encrypted = self.des.encrypt(send_mes,KEY)
+        receive = threading.Thread(target = self.receiveMessage)
+        receive.start()
+        send_mes = ""
+        while send_mes != "exit":
+            send_mes = input()
+            send_mes_encrypted = self.des.encrypt(send_mes, KEY)
             self.s.send(send_mes_encrypted.encode())
             print("Message sent.")
             if send_mes == "exit":
                 break
-            info_encrypted = self.s.recv(1024).decode()
-            # print(info_encrypted)
-            info = self.des.decrypt(info_encrypted,KEY)
         self.s.close()
+
+
+
 
 
 
