@@ -358,19 +358,22 @@ class DES():
             finalTextOfChar = self.unicode2char(finalTextOfUnicode)
             return finalTextOfChar
 
-
+    #加密函数
     def encrypt(self,text,key):
         Result = ""
         length = len(text)
+        #补齐位数
         text = text + (length % 4) * " "
         length = len(text)
 
+        #一次次调用DES
         for i in range(int(length / 4)):
             tempText = [text[j] for j in range(i * 4, i * 4 + 4)]
             Result = "".join([Result, self.DES(tempText, key, 0)])
         return Result
 
 
+    #解密函数
     def decrypt(self,text,key):
         length = len(text)
         Result = ""
@@ -378,6 +381,7 @@ class DES():
             tempText = [text[j] for j in range(i * 8, i * 8 + 8)]
             Result = "".join([Result, self.DES(tempText, key,1)])
         return Result
+
 
 
 if __name__ == '__main__':

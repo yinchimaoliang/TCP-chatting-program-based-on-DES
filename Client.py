@@ -1,8 +1,9 @@
 import socket
 from DES import DES
 import threading
+import os
 
-
+IP = "127.0.0.2"
 PORT = 12345
 KEY = "12345678"
 
@@ -14,7 +15,7 @@ class Client():
         self.port = port
         self.host = socket.gethostname()
         self.s = socket.socket()
-        self.s.connect((self.host,self.port))
+        self.s.connect((IP,self.port))
         print('Linked')
         self.des = DES()
 
@@ -30,17 +31,15 @@ class Client():
         receive = threading.Thread(target = self.receiveMessage)
         receive.start()
         send_mes = ""
-        while send_mes != "exit":
+        while send_mes != 'exit':
             send_mes = input()
+            if send_mes == "exit":
+                break
             send_mes_encrypted = self.des.encrypt(send_mes, KEY)
             self.s.send(send_mes_encrypted.encode())
             print("Message sent.")
-            if send_mes == "exit":
-                break
         self.s.close()
-
-
-
+        os._exit(0)
 
 
 

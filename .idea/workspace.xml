@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a73a301f-7e80-4790-b706-513cf33a073b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/User.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test_client.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test_server.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client.py" beforeDir="false" afterPath="$PROJECT_DIR$/Client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DES.py" beforeDir="false" afterPath="$PROJECT_DIR$/DES.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server.py" beforeDir="false" afterPath="$PROJECT_DIR$/Server.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,11 +15,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/DES.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2880">
-              <caret line="372" lean-forward="true" selection-start-line="372" selection-end-line="372" />
+            <state relative-caret-position="391">
+              <caret line="384" lean-forward="true" selection-start-line="384" selection-end-line="384" />
             </state>
           </provider>
         </entry>
@@ -29,8 +27,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Client.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="27" selection-start-line="27" selection-end-line="27" />
+            <state relative-caret-position="90">
+              <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -41,8 +39,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test_server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="13" lean-forward="true" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+            <state relative-caret-position="45">
+              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -53,8 +51,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test_client.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="34" column="17" lean-forward="true" selection-start-line="33" selection-start-column="8" selection-end-line="34" selection-end-column="17" />
+            <state relative-caret-position="480">
+              <caret line="34" column="17" selection-start-line="33" selection-start-column="8" selection-end-line="34" selection-end-column="17" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -71,11 +69,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="38" column="17" lean-forward="true" selection-start-line="38" selection-start-column="17" selection-end-line="38" selection-end-column="17" />
+            <state relative-caret-position="150">
+              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -103,12 +101,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/DES.py" />
         <option value="$PROJECT_DIR$/test_server.py" />
         <option value="$PROJECT_DIR$/User.py" />
         <option value="$PROJECT_DIR$/test_client.py" />
         <option value="$PROJECT_DIR$/Client.py" />
         <option value="$PROJECT_DIR$/Server.py" />
+        <option value="$PROJECT_DIR$/DES.py" />
       </list>
     </option>
   </component>
@@ -153,7 +151,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.test_client">
+  <component name="RunManager" selected="Python.Client">
     <configuration name="Client" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="TCP chatting program based on DES" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -290,7 +288,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3294979" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3294979" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -305,10 +303,23 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/DES.py">
+    <entry file="file://$PROJECT_DIR$/test_server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2880">
-          <caret line="372" lean-forward="true" selection-start-line="372" selection-end-line="372" />
+        <state relative-caret-position="45">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_client.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="34" column="17" selection-start-line="33" selection-start-column="8" selection-end-line="34" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -319,43 +330,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test_server.py">
+    <entry file="file://$PROJECT_DIR$/Server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="13" lean-forward="true" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        <state relative-caret-position="150">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
           <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_client.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="34" column="17" lean-forward="true" selection-start-line="33" selection-start-column="8" selection-end-line="34" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Client.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        <state relative-caret-position="90">
+          <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server.py">
+    <entry file="file://$PROJECT_DIR$/DES.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="38" column="17" lean-forward="true" selection-start-line="38" selection-start-column="17" selection-end-line="38" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="391">
+          <caret line="384" lean-forward="true" selection-start-line="384" selection-end-line="384" />
         </state>
       </provider>
     </entry>

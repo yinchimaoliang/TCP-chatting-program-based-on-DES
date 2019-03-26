@@ -1,8 +1,10 @@
 import socket
 from DES import DES
 import threading
+import os
 
 
+IP = "127.0.0.2"
 PORT = 12345
 KEY = "12345678"
 
@@ -12,7 +14,7 @@ class Server():
     def __init__(self,port):
         self.host = socket.gethostname()
         self.s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-        self.s.bind((self.host,port))
+        self.s.bind((IP,port))
         self.s.listen(1)
         self.sock,self.addr = self.s.accept()
         self.des = DES()
@@ -32,13 +34,16 @@ class Server():
         while send_mes != 'exit':
 
           send_mes = input()
+          if send_mes =='exit':
+            break
           send_mes_encrypted = self.des.encrypt(send_mes,KEY)
           self.sock.send(send_mes_encrypted.encode())
           print("Message sent.")
-          if send_mes =='exit':
-            break
+
+
         self.sock.close()
         self.s.close()
+        os._exit(0 )
 
 
 
